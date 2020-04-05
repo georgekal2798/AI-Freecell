@@ -18,11 +18,11 @@ public abstract class SolitaireStack {
     public abstract boolean canMove(SolitaireStack sourceStack);
 
     public void move(SolitaireStack sourceStack){
-        Card newCard = sourceStack.top();
-        Card topCard = this.isEmpty() ? null : this.top();
+        Card newCard = sourceStack.getCards().pop();
+        Card topCard = this.top();
 
-        this.add(sourceStack.getCards().pop());
-        Global.logMove(this.moveMessage(topCard, newCard));
+        this.add(newCard);
+        FileManager.logMove(this.moveMessage(topCard, newCard));
     }
 
     protected abstract String moveMessage(Card topCard, Card newCard);
@@ -32,6 +32,7 @@ public abstract class SolitaireStack {
     }
 
     public Card top(){
+        if (this.isEmpty()) return null;
         return this.getCards().peek();
     }
 }
