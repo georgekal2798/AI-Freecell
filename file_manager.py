@@ -36,6 +36,10 @@ def read_file(input_path):
         # Initiate new stack before adding cards for each line
         data.base_stacks.append(BaseStack())
         for card_str in line.split(' '):
+            # Ignores spaces at the end of each line --> card_str == None
+            if not card_str:
+                continue
+
             suit_str = card_str[0]  # First character is the suit
             number_str = card_str[1:]  # The rest digits is the number
 
