@@ -22,7 +22,9 @@ class SolitaireStack:
         self.cards.append(card)
 
     def top(self):
-        return self.cards[-1]
+        if self.cards:
+            return self.cards[-1]
+        return None
 
     def move_message(self, top, new):
         pass

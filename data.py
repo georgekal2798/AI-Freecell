@@ -14,9 +14,19 @@ freecels = []
 
 
 def print_stacks():
-    print('Base stacks')
-    for stack in base_stacks:
-        temp = ''
-        for card in stack.cards:
-            temp += '{:4}'.format(card.name())
-        print(temp)
+    def print_stack(n, g):
+        print(n)
+        for stack in g:
+            temp = ''
+            for card in stack.cards:
+                temp += '{:4}'.format(card.name())
+            print(temp)
+
+    stack_map = {
+        'Base Stacks': base_stacks,
+        'Foundations': foundations,
+        'Freecells': freecels
+    }
+
+    for name, stack_group in stack_map.items():
+        print_stack(name, stack_group)

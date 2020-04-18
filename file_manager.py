@@ -1,6 +1,6 @@
 import data
+from base_stack import BaseStack
 from card import Suit, Card
-from solitaire_stack import SolitaireStack
 
 
 def log_move(message):
@@ -34,7 +34,7 @@ def read_file(input_path):
 
     for s, line in enumerate(file):
         # Initiate new stack before adding cards for each line
-        data.base_stacks.append(SolitaireStack())
+        data.base_stacks.append(BaseStack())
         for card_str in line.split(' '):
             suit_str = card_str[0]  # First character is the suit
             number_str = card_str[1:]  # The rest digits is the number
