@@ -2,7 +2,10 @@ import sys
 
 import data
 import file_manager
-from algorithm import Algorithm
+from astar import AStar
+from best import Best
+from breadth import Breadth
+from depth import Depth
 
 
 def main():
@@ -13,13 +16,18 @@ def main():
     file_manager.read_file(input_path)
 
     switch = {
-        'breadth': Algorithm(),
-        'width': Algorithm(),
-        'best': Algorithm(),
-        'astar': Algorithm()
+        'breadth': Breadth(),
+        'depth': Depth(),
+        'best': Best(),
+        'astar': AStar()
     }
     algorithm = switch.get(algorithm_str, None)
-    algorithm.run()
+
+    if not algorithm:
+        algorithm.run()
+    else:
+        # TODO: Move to error handling module
+        print('Wrong algorithm name')
 
 
 if __name__ == '__main__':
