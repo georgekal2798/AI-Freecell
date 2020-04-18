@@ -1,3 +1,4 @@
+import data
 import file_manager
 
 
@@ -9,4 +10,5 @@ class Algorithm:
         pass
 
     def stop(self):
+        data.print_stacks()
         file_manager.write_file()

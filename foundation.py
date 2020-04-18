@@ -1,3 +1,4 @@
+from card import Card
 from solitaire_stack import SolitaireStack
 
 
@@ -6,11 +7,12 @@ class Foundation(SolitaireStack):
         super().__init__()
 
     def can_move(self, source_stack):
-        if source_stack.is_empty():
+        if source_stack.is_empty() or type(source_stack) is Foundation:
+            # There is no point in moving a card from one foundation to another
             return False
         elif self.is_empty():
-            if source_stack.top().number == 0:
-                # This foundation is empty and the new card is an ace (in that case a 0)
+            if source_stack.top().number == Card.ACE:
+                # This foundation is empty and the new card is an ace (in that case a 1)
                 return True
             else:
                 return False

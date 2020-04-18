@@ -23,7 +23,7 @@ def main():
     }
     algorithm = switch.get(algorithm_str, None)
 
-    if not algorithm:
+    if algorithm:
         algorithm.run()
     else:
         # TODO: Move to error handling module

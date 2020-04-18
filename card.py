@@ -14,6 +14,8 @@ class Color(Enum):
 
 
 class Card:
+    ACE = 1
+
     def __init__(self, number, suit):
         self.suit = suit
         self.number = number
