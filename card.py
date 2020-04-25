@@ -20,6 +20,12 @@ class Card:
         self.suit = suit
         self.number = number
 
+    def __eq__(self, other):
+        return self.suit == other.suit and self.number == other.number
+
+    def __hash__(self):
+        return hash((self.suit, self.number))
+
     def name(self):
         switch = {
             Suit.HEARTS: 'H',

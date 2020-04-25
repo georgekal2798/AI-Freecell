@@ -3,17 +3,15 @@ from base_stack import BaseStack
 from card import Suit, Card
 
 
-def log_move(message):
-    data.number_of_moves += 1
-    data.moves_logger += '\n' + message
-
-
-def write_file():
-    # Replace placeholder with number of moves
-    data.moves_logger = data.moves_logger.replace('%NUM_OF_MOVES%', str(data.number_of_moves))
-
+def write_file(node):
     file = open(data.output_path, 'w')
-    file.write(data.moves_logger)
+
+    if node:
+        # Replace placeholder with number of moves
+        node.moves_logger = node.moves_logger.replace('%NUM_OF_MOVES%', str(node.number_of_moves))
+        file.write(node.moves_logger)
+    else:
+        file.write('0')
 
     file.close()
 
@@ -55,4 +53,4 @@ def read_file(input_path):
     file.close()
 
     # Debugging
-    data.print_stacks()
+    # data.print_stacks()

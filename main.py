@@ -2,28 +2,36 @@ import sys
 
 import data
 import file_manager
-from astar import AStar
-from best import Best
-from breadth import Breadth
-from depth import Depth
+from algorithm import Method, Algorithm
+
+
+# from astar import AStar
+# from best import Best
+# from breadth import Breadth
+# from depth import Depth
 
 
 def main():
     # algorithm, input_path, data.output_path = sys.argv[:3]
+
     # Debugging
-    algorithm_str, input_path, data.output_path = ['breadth', 'test1.txt', 'out.txt']
+    algorithm_str, input_path, data.output_path = ['breadth', 'test2.txt', 'out.txt']
+
+    # sys.setrecursionlimit(3000)
 
     file_manager.read_file(input_path)
 
     switch = {
-        'breadth': Breadth(),
-        'depth': Depth(),
-        'best': Best(),
-        'astar': AStar()
+        'breadth': Method.BREADTH,
+        'depth': Method.DEPTH,
+        'best': Method.BEST,
+        'astar': Method.A_STAR
     }
-    algorithm = switch.get(algorithm_str, None)
+    method = switch.get(algorithm_str, None)
+    algorithm = Algorithm()
 
-    if algorithm:
+    if method:
+        data.method = method
         algorithm.run()
     else:
         # TODO: Move to error handling module

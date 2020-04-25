@@ -1,3 +1,6 @@
+from algorithm import Method
+from tree_node import TreeNode
+
 N = 13  # Number of cards per suit
 S = 8  # Number of base stacks
 C = 4  # Number of freecells
@@ -5,15 +8,12 @@ F = 4  # Number of foundations
 
 output_path = 'out.txt'
 
-moves_logger = ''
-number_of_moves = 0
+method = Method.BREADTH
 
 base_stacks = []
-foundations = []
-freecels = []
 
 
-def print_stacks():
+def print_stacks(node):
     def print_stack(n, g):
         print(n)
         for stack in g:
@@ -22,11 +22,14 @@ def print_stacks():
                 temp += '{:4}'.format(card.name())
             print(temp)
 
-    stack_map = {
-        'Base Stacks': base_stacks,
-        'Foundations': foundations,
-        'Freecells': freecels
-    }
+    if node:
+        stack_map = {
+            'Base Stacks': node.base_stacks,
+            'Foundations': node.foundations,
+            'Freecells': node.freecells
+        }
 
-    for name, stack_group in stack_map.items():
-        print_stack(name, stack_group)
+        for name, stack_group in stack_map.items():
+            print_stack(name, stack_group)
+    else:
+        print('No solution')

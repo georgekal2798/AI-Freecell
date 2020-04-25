@@ -5,6 +5,15 @@ class SolitaireStack:
     def __init__(self):
         self.cards = []
 
+    def __eq__(self, other):
+        return self.cards == other.cards
+
+    def __ne__(self, other):
+        return self.cards != other.cards
+
+    def __hash__(self):
+        return hash(tuple(self.cards))
+
     def is_empty(self):
         return not self.cards
 
@@ -12,11 +21,16 @@ class SolitaireStack:
         pass
 
     def move(self, source_stack):
+        # TODO: Not needed. Remove it
+        if source_stack.is_empty():
+            return 'error'
+
         new = source_stack.cards.pop()
         top = self.top()
 
         self.add(new)
-        file_manager.log_move(self.move_message(top, new))
+
+        return self.move_message(top, new)
 
     def add(self, card):
         self.cards.append(card)
