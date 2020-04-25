@@ -27,7 +27,7 @@ class Algorithm:
         root_node = TreeNode(
             None
             , data.base_stacks
-            , [Foundation() for i in range(data.F)]
+            , [Foundation(i) for i in range(data.F)]
             , [Freecell() for i in range(data.C)]
             , 0
         )

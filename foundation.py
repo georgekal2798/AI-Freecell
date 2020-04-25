@@ -3,8 +3,9 @@ from solitaire_stack import SolitaireStack
 
 
 class Foundation(SolitaireStack):
-    def __init__(self):
+    def __init__(self, suit):
         super().__init__()
+        self.suit = suit
 
     def can_move(self, source_stack):
         if source_stack.is_empty() or type(source_stack) is Foundation:
@@ -20,7 +21,7 @@ class Foundation(SolitaireStack):
             # The card from the source stack is greater by one than the on this stack
             greater_by_one = source_stack.top().number - self.top().number == 1
             # The two cards are of the same suit
-            same_suit = source_stack.top().suit == self.top().suit
+            same_suit = source_stack.top().suit == self.suit
 
             if same_suit and greater_by_one:
                 return True
