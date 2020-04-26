@@ -1,4 +1,5 @@
 import copy
+from collections import deque
 from enum import Enum
 
 import data
@@ -9,17 +10,17 @@ from freecell import Freecell
 from tree_node import TreeNode
 
 
-class Method(Enum):
-    BREADTH = 0
-    DEPTH = 1
-    BEST = 2
-    A_STAR = 3
+# class Method(Enum):
+#     BREADTH = 0
+#     DEPTH = 1
+#     BEST = 2
+#     A_STAR = 3
 
 
 class Algorithm:
     def __init__(self):
-        self.frontier = None
-        self.visited = None
+        self.frontier = deque()
+        self.visited = set()
         # Testing
         self.max_depth = 0
 
@@ -27,17 +28,17 @@ class Algorithm:
         root_node = TreeNode(
             None
             , data.base_stacks
-            , [Foundation(i) for i in range(data.F)]
-            , [Freecell() for i in range(data.C)]
+            , deque([Foundation(i) for i in range(data.F)])
+            , deque([Freecell() for i in range(data.C)])
             , 0
         )
 
-        self.frontier = [root_node]
-        self.visited = {root_node}
+        self.frontier.append(root_node)
+        self.visited.add(root_node)
 
         solution = None
         while self.frontier:
-            current_node = self.frontier.pop(0)
+            current_node = self.frontier.popleft()
 
             if self.is_solution(current_node):
                 solution = current_node
@@ -73,10 +74,13 @@ class Algorithm:
             if new_node in self.visited:
                 new_node = None
             else:
-                self.frontier.append(new_node)
+                self.add_to_frontier(new_node)
                 self.visited.add(new_node)
 
         return None
+
+    def add_to_frontier(self, node):
+        pass
 
     def is_solution(self, node):
         for f in node.foundations:

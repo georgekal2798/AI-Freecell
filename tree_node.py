@@ -72,10 +72,12 @@ class TreeNode:
     #            (self.foundations == node.foundations) and \
     #            (self.freecells == node.freecells)
 
-    def calculate_heuristic(self):
+    def calculate_heuristic(self, include_moves=0):
         # Heuristic value is calculated by how many cards are left to go to the foundations to win the game
         value = 4 * data.N
         for f in self.foundations:
             value -= len(f.cards)
 
-        return value
+        # include_moves is different than zero only when A* search algorithm is used. In that case the number of moves
+        # already made is added to the final heuristic value
+        return value + include_moves

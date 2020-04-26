@@ -1,4 +1,4 @@
-from algorithm import Method
+from collections import deque
 from tree_node import TreeNode
 
 N = 13  # Number of cards per suit
@@ -8,9 +8,7 @@ F = 4  # Number of foundations
 
 output_path = 'out.txt'
 
-method = Method.BREADTH
-
-base_stacks = []
+base_stacks = deque()
 
 
 def print_stacks(node):
