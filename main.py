@@ -28,11 +28,10 @@ class Report:
 
 
 def main():
-    if len(sys.argv) == 1:
-        # Debugging. For when main is called from the IDE
-        algorithm_str, input_path, data.output_path = ['report', 'test1.txt', 'out.txt']
-    else:
-        algorithm_str, input_path, data.output_path = sys.argv[1:4]
+    # algorithm, input_path, data.output_path = sys.argv[:3]
+
+    # Debugging
+    algorithm_str, input_path, data.output_path = ['best', 'test6.txt', 'out.txt']
 
     file_manager.read_file(input_path)
 
