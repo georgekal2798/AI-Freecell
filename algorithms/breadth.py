@@ -1,4 +1,4 @@
-from algorithm import Algorithm
+from algorithms.algorithm import Algorithm
 
 
 class Breadth(Algorithm):

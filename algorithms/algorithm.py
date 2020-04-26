@@ -1,15 +1,12 @@
 import copy
-import sys
 from collections import deque
 import time
-from enum import Enum
 
 import data
 import file_manager
-from base_stack import BaseStack
-from card import Suit
-from foundation import Foundation
-from freecell import Freecell
+from model.card import Suit
+from model.foundation import Foundation
+from model.freecell import Freecell
 from tree_node import TreeNode
 
 

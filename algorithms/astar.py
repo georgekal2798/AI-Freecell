@@ -1,15 +1,15 @@
 from collections import deque
 from itertools import islice
 
-from algorithm import Algorithm
+from algorithms.algorithm import Algorithm
 
 
-class Best(Algorithm):
+class AStar(Algorithm):
     def __init__(self):
         super().__init__()
 
     def add_to_frontier(self, node):
-        node.calculate_heuristic()
+        node.calculate_heuristic(node.depth)
 
         # Find insertion index in the frontier
         n = 0

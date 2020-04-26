@@ -1,5 +1,5 @@
-from card import Card
-from solitaire_stack import SolitaireStack
+from model.card import Card
+from model.solitaire_stack import SolitaireStack
 
 
 class Foundation(SolitaireStack):

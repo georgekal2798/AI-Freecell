@@ -8,7 +8,7 @@ F = 4  # Number of foundations
 
 output_path = 'out.txt'
 
-timeout_threshold = 300
+timeout_threshold = 3
 
 base_stacks = deque()
 

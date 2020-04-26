@@ -1,7 +1,5 @@
-import copy
-
 import data
-from card import Card
+from model.card import Card
 
 
 class TreeNode:

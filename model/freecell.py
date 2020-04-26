@@ -1,4 +1,4 @@
-from solitaire_stack import SolitaireStack
+from model.solitaire_stack import SolitaireStack
 
 
 class Freecell(SolitaireStack):

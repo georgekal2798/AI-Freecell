@@ -1,6 +1,6 @@
 import data
-from base_stack import BaseStack
-from card import Suit, Card
+from model.base_stack import BaseStack
+from model.card import Suit, Card
 
 
 def write_file(node):
