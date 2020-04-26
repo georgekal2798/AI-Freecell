@@ -12,14 +12,15 @@ from algorithms.depth import Depth
 
 def print_report():
     switch = {
-        'BFS': Breadth(),
-        'DFS': Depth(),
+        'Breadth': Breadth(),
+        'Depth': Depth(),
         'Best': Best(),
-        'A*': AStar()
+        'AStar': AStar()
     }
 
     for key, algorithm in switch.items():
         print('Running: ' + key)
+        data.output_path = 'output/out_' + key + '.txt'
         time, moves, checked = algorithm.run()
         if time < data.timeout_threshold:
             print('Time: ' + str(time))
@@ -30,7 +31,7 @@ def print_report():
 def main():
     if len(sys.argv) == 1:
         # For when main is called from the IDE
-        algorithm_str, input_path, data.output_path = ['report', 'input/test1.txt', 'out.txt']
+        algorithm_str, input_path, data.output_path = ['best', 'input/test1.txt', 'output/out.txt']
     else:
         algorithm_str, input_path, data.output_path = sys.argv[1:4]
 
@@ -53,7 +54,9 @@ def main():
             if time < data.timeout_threshold:
                 print('Time: ' + str(time))
             print('Moves: ' + str(moves))
-            print('States checked: ' + str(checked))
+            print('States checked: ' + str(checked) + '\n')
+
+        print('Solutions can be found in folder \'output\'')
     else:
         # TODO: Move to error handling module
         print('Wrong algorithm name')

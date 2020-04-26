@@ -5,7 +5,7 @@ S = 8  # Number of base stacks
 C = 4  # Number of freecells
 F = 4  # Number of foundations
 
-output_path = 'out.txt'
+output_path = 'output/out.txt'
 
 timeout_threshold = 60
 
