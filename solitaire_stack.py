@@ -1,9 +1,11 @@
+from collections import deque
+
 import file_manager
 
 
 class SolitaireStack:
     def __init__(self):
-        self.cards = []
+        self.cards = deque()
 
     def __eq__(self, other):
         return self.cards == other.cards
@@ -21,10 +23,6 @@ class SolitaireStack:
         pass
 
     def move(self, source_stack):
-        # TODO: Not needed. Remove it
-        if source_stack.is_empty():
-            return 'error'
-
         new = source_stack.cards.pop()
         top = self.top()
 
