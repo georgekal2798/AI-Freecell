@@ -32,8 +32,12 @@ def main():
     if len(sys.argv) == 1:
         # For when main is called from the IDE
         algorithm_str, input_path, data.output_path = ['best', 'input/test1.txt', 'output/out.txt']
-    else:
+    elif len(sys.argv) == 3:
+        algorithm_str, input_path = sys.argv[1:3]
+    elif len(sys.argv) == 4:
         algorithm_str, input_path, data.output_path = sys.argv[1:4]
+    else:
+        print('Wrong number of arguments')
 
     file_manager.read_file(input_path)
 
