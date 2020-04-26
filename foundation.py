@@ -12,7 +12,7 @@ class Foundation(SolitaireStack):
             # There is no point in moving a card from one foundation to another
             return False
         elif self.is_empty():
-            if source_stack.top().number == Card.ACE:
+            if source_stack.top().number == Card.ACE and source_stack.top().suit == self.suit:
                 # This foundation is empty and the new card is an ace (in that case a 1)
                 return True
             else:
