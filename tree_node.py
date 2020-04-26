@@ -1,8 +1,11 @@
+import copy
+
 import data
+from card import Card
 
 
 class TreeNode:
-    def __init__(self, parent, base_stacks, foundations, freecells, depth):
+    def __init__(self, parent, base_stacks, foundations, freecells, depth, moves_logger = '%NUM_OF_MOVES%'):
         self.parent = parent
         self.base_stacks = base_stacks
         self.foundations = foundations
@@ -10,7 +13,7 @@ class TreeNode:
         self.depth = depth
         self.heuristic_value = 0
         self.number_of_moves = 0
-        self.moves_logger = ''
+        self.moves_logger = moves_logger
 
     def __eq__(self, other):
         return (self.base_stacks == other.base_stacks) and \
@@ -64,7 +67,7 @@ class TreeNode:
         return self.base_stacks + self.foundations + self.freecells
 
     def log_move(self, message):
-        self.number_of_moves += 1
+        # self.number_of_moves += 1
         self.moves_logger += '\n' + message
 
     # def equals(self, node):
@@ -73,11 +76,30 @@ class TreeNode:
     #            (self.freecells == node.freecells)
 
     def calculate_heuristic(self, include_moves=0):
-        # Heuristic value is calculated by how many cards are left to go to the foundations to win the game
-        value = 4 * data.N
+        # Based on this paper:
+        # http://www.genetic-programming.org/hc2011/06-Elyasaf-Hauptmann-Sipper/Elyasaf-Hauptmann-Sipper-Paper.pdf
+        #
+        # For each foundation stack, locate within the base stacks the next card that should be placed there, and count
+        # the cards found on top of it. The returned value is the sum of this count for all foundations. This number is
+        # multiplied by 2 if there are no free freecells or empty foundation stacks (reflecting the fact that freeing
+        # the next card is harder in this case).
+
+        value = 0
         for f in self.foundations:
-            value -= len(f.cards)
+            if not f.is_empty():
+                if f.top().number == data.N:
+                    # This foundation is full. No cards left to be added
+                    continue
+                else:
+                    card = Card(f.top().number + 1, f.suit)
+            else:
+                card = Card(Card.ACE, f.suit)
+
+            for i, s in enumerate(self.base_stacks):
+                if card in s.cards:
+                    value += i
+                    break
 
         # include_moves is different than zero only when A* search algorithm is used. In that case the number of moves
         # already made is added to the final heuristic value
-        return value + include_moves
+        self.heuristic_value = value + include_moves

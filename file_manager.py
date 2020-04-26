@@ -8,7 +8,7 @@ def write_file(node):
 
     if node:
         # Replace placeholder with number of moves
-        node.moves_logger = node.moves_logger.replace('%NUM_OF_MOVES%', str(node.number_of_moves))
+        node.moves_logger = node.moves_logger.replace('%NUM_OF_MOVES%', str(node.depth))
         file.write(node.moves_logger)
     else:
         file.write('0')

@@ -21,6 +21,6 @@ class AStar(Algorithm):
         frontier_slice1 = list(islice(self.frontier, None, n))
         frontier_slice2 = list(islice(self.frontier, n, None))
 
-        temp = frontier_slice1 + [n] + frontier_slice2
+        temp = frontier_slice1 + [node] + frontier_slice2
 
         self.frontier = deque(temp)
