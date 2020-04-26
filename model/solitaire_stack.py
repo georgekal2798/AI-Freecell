@@ -1,7 +1,5 @@
 from collections import deque
 
-import file_manager
-
 
 class SolitaireStack:
     def __init__(self):

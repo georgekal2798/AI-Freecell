@@ -24,13 +24,13 @@ def print_report():
         if time < data.timeout_threshold:
             print('Time: ' + str(time))
         print('Moves: ' + str(moves))
-        print('States checked: ' + str(checked))
+        print('States checked: ' + str(checked) + '\n')
 
 
 def main():
     if len(sys.argv) == 1:
-        # Debugging. For when main is called from the IDE
-        algorithm_str, input_path, data.output_path = ['best', 'input/test1.txt', 'out.txt']
+        # For when main is called from the IDE
+        algorithm_str, input_path, data.output_path = ['report', 'input/test1.txt', 'out.txt']
     else:
         algorithm_str, input_path, data.output_path = sys.argv[1:4]
 

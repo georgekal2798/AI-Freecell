@@ -1,5 +1,4 @@
 from collections import deque
-from tree_node import TreeNode
 
 N = 13  # Number of cards per suit
 S = 8  # Number of base stacks
@@ -8,7 +7,7 @@ F = 4  # Number of foundations
 
 output_path = 'out.txt'
 
-timeout_threshold = 3
+timeout_threshold = 60
 
 base_stacks = deque()
 

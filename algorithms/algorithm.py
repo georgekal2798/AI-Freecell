@@ -10,18 +10,10 @@ from model.freecell import Freecell
 from tree_node import TreeNode
 
 
-# class Method(Enum):
-#     BREADTH = 0
-#     DEPTH = 1
-#     BEST = 2
-#     A_STAR = 3
-
-
 class Algorithm:
     def __init__(self):
         self.frontier = deque()
         self.visited = set()
-        # Testing
         self.max_depth = 0
         self.best_node = None
         self.states_checked = 1
@@ -51,10 +43,6 @@ class Algorithm:
                 solution = self.best_node
                 break
 
-            # Debugging
-            # if timer % 10 == 0:
-            #     print('Size of frontier (' + str(timer) + ' seconds): ' + str(len(self.frontier)))
-
             current_node = self.frontier.popleft()
 
             if self.is_solution(current_node):
@@ -80,7 +68,7 @@ class Algorithm:
                 , node.moves_logger
             )
 
-            # Debugging
+            # Debugging. Used as a kind of progress indicator
             if new_node.depth > self.max_depth:
                 self.best_node = new_node
                 self.max_depth = new_node.depth
@@ -109,6 +97,6 @@ class Algorithm:
                 return False
         return True
 
-    def stop(self, node):
-        data.print_stacks(node)
-        file_manager.write_file(node)
+    def stop(self, solution):
+        # data.print_stacks(solution)
+        file_manager.write_file(solution)

@@ -51,6 +51,3 @@ def read_file(input_path):
             data.base_stacks[s].add(card)
 
     file.close()
-
-    # Debugging
-    # data.print_stacks()

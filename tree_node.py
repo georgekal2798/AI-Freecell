@@ -3,7 +3,7 @@ from model.card import Card
 
 
 class TreeNode:
-    def __init__(self, parent, base_stacks, foundations, freecells, depth, moves_logger = '%NUM_OF_MOVES%'):
+    def __init__(self, parent, base_stacks, foundations, freecells, depth, moves_logger='%NUM_OF_MOVES%'):
         self.parent = parent
         self.base_stacks = base_stacks
         self.foundations = foundations
@@ -50,28 +50,12 @@ class TreeNode:
 
         return possible_moves
 
-    # def has_loop(self, node):
-    #     if self == node:
-    #         # print('equal')
-    #         return True
-    #     elif self.parent:
-    #         # print('not equal')
-    #         self.parent.has_loop(node)
-    #     else:
-    #         # print('reached root. no loop')
-    #         return False
-
     def all_stacks(self):
         return self.base_stacks + self.foundations + self.freecells
 
     def log_move(self, message):
         # self.number_of_moves += 1
         self.moves_logger += '\n' + message
-
-    # def equals(self, node):
-    #     return (self.base_stacks == node.base_stacks) and \
-    #            (self.foundations == node.foundations) and \
-    #            (self.freecells == node.freecells)
 
     def calculate_heuristic(self, include_moves=0):
         # Based on this paper:
