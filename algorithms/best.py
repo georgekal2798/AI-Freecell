@@ -17,10 +17,4 @@ class Best(Algorithm):
             if frontier_node.heuristic_value > node.heuristic_value:
                 break
 
-        # Slice frontier in order to insert new node in between
-        frontier_slice1 = list(islice(self.frontier, None, n))
-        frontier_slice2 = list(islice(self.frontier, n, None))
-
-        temp = frontier_slice1 + [node] + frontier_slice2
-
-        self.frontier = deque(temp)
+        self.frontier.insert(n, node)
