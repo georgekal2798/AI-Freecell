@@ -6,4 +6,4 @@ class Breadth(Algorithm):
         super().__init__()
 
     def add_to_frontier(self, node):
-        self.frontier.append(node)
+        self.frontier.appendleft(node)
