@@ -1,0 +1,6 @@
+5
+foundation C1
+freecell D3
+foundation D1
+newstack S2
+freecell S2

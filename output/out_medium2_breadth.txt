@@ -1,0 +1,6 @@
+5
+stack H5 C6
+stack D2 S3
+freecell S5
+freecell C2
+freecell H5

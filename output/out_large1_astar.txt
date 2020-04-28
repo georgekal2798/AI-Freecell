@@ -1,0 +1,14 @@
+13
+foundation S1
+stack S3 H4
+freecell C1
+newstack S5
+freecell C7
+foundation D1
+foundation D2
+freecell D3
+freecell S3
+foundation S2
+foundation S3
+freecell H1
+stack D2 C3

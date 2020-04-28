@@ -1,0 +1,5 @@
+4
+stack H1 C2
+newstack H3
+stack H2 S3
+stack H2 C3

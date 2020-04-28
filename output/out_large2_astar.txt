@@ -1,0 +1,9 @@
+8
+freecell C4
+freecell H2
+freecell S5
+foundation H1
+freecell H3
+foundation H2
+freecell D1
+stack D2 S3

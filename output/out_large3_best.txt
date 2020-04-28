@@ -1,0 +1,70 @@
+69
+freecell S1
+freecell D2
+foundation C1
+foundation D1
+foundation H1
+newstack S4
+freecell C2
+stack H5 C6
+stack H2 S3
+newstack D6
+freecell S2
+foundation S1
+foundation S2
+freecell S4
+freecell H2
+foundation S3
+newstack H5
+stack C6 H7
+stack S5 H6
+foundation S4
+newstack C7
+freecell S6
+foundation S5
+stack H6 C7
+stack C3 H4
+foundation C2
+freecell C4
+foundation C3
+stack C5 D6
+foundation C4
+freecell C5
+newstack D6
+newstack H3
+foundation H2
+foundation H3
+freecell H5
+foundation H4
+stack D5 C6
+newstack H6
+foundation H5
+newstack D5
+freecell C6
+foundation C5
+freecell H7
+foundation H6
+foundation H7
+newstack C7
+foundation C6
+foundation C7
+freecell D3
+foundation D2
+freecell D4
+foundation D3
+newstack D5
+foundation D4
+freecell S7
+foundation S6
+foundation S7
+freecell D6
+foundation D5
+newstack D7
+foundation D6
+foundation D7
+newstack C7
+freecell C7
+newstack C6
+newstack C7
+freecell C6
+newstack C6

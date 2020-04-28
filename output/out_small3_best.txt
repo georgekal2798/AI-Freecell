@@ -1,0 +1,23 @@
+22
+freecell H1
+freecell S1
+freecell D1
+freecell H2
+foundation H1
+freecell C2
+foundation C1
+stack S2 D3
+foundation S1
+freecell H3
+foundation H2
+foundation H3
+freecell S3
+foundation S2
+foundation S3
+freecell D2
+foundation D1
+foundation D2
+foundation D3
+newstack C3
+foundation C2
+foundation C3

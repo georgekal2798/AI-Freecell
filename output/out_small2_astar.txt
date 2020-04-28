@@ -1,0 +1,9 @@
+8
+freecell D1
+foundation H1
+freecell C2
+foundation C1
+freecell S1
+foundation H2
+foundation H3
+freecell S3

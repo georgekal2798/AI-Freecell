@@ -1,0 +1,6 @@
+5
+freecell S3
+freecell C6
+freecell C4
+freecell C7
+foundation C1

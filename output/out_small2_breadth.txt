@@ -1,0 +1,5 @@
+4
+freecell H1
+freecell S3
+newstack C2
+newstack D2

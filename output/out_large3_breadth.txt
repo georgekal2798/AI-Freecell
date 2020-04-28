@@ -1,0 +1,6 @@
+5
+foundation S1
+stack C6 H7
+stack D6 C7
+freecell D2
+stack S5 D6
