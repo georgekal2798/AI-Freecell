@@ -39,7 +39,7 @@ class Algorithm:
             # Check timer before continuing
             timer = time.time() - t0
             if timer > data.timeout_threshold:
-                print('Timeout. Best node:')
+                print('Timeout. Node with the greatest depth:')
                 solution = self.best_node
                 break
 
@@ -72,7 +72,7 @@ class Algorithm:
             if new_node.depth > self.max_depth:
                 self.best_node = new_node
                 self.max_depth = new_node.depth
-                print("Current maximum depth: %d" % self.max_depth)
+                # print("Current maximum depth: %d" % self.max_depth)
 
             other_stack = new_node.all_stacks()[move[1]]
             current_stack = new_node.all_stacks()[move[0]]
