@@ -72,7 +72,7 @@ class Algorithm:
             if new_node.depth > self.max_depth:
                 self.best_node = new_node
                 self.max_depth = new_node.depth
-                # print("Current maximum depth: %d" % self.max_depth)
+                print("Current maximum depth: %d" % self.max_depth)
 
             other_stack = new_node.all_stacks()[move[1]]
             current_stack = new_node.all_stacks()[move[0]]
@@ -80,11 +80,10 @@ class Algorithm:
             move_message = other_stack.move(current_stack)
             new_node.log_move(move_message)
 
-            if new_node in self.visited:
-                new_node = None
-            else:
+            if new_node not in self.visited:
                 self.add_to_frontier(new_node)
                 self.visited.add(new_node)
+            new_node = None
 
         return None
 

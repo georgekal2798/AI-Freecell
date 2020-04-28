@@ -1,5 +1,6 @@
 import data
 from model.card import Card
+from model.freecell import Freecell
 
 
 class TreeNode:
@@ -35,8 +36,10 @@ class TreeNode:
 
         freecells_range = range(data.S + data.F, data.S + data.F + data.C)
 
-        for i, current_stack in enumerate(self.all_stacks()):
+        for i, current_stack in enumerate(self.base_stacks + self.freecells):
             i_to_freecell = False
+            if type(current_stack) is Freecell:
+                i += data.F
             for j, other_stack in enumerate(self.all_stacks()):
                 if current_stack != other_stack and other_stack.can_move(current_stack):
                     if i_to_freecell and j in freecells_range:
@@ -82,14 +85,15 @@ class TreeNode:
 
             for i, s in enumerate(self.base_stacks):
                 if card in s.cards:
-                    value += 2*i
+                    value += i
+                    # value += 2*i
                     break
 
         # If freecells are not full, value is divided by 2
-        for c in self.freecells:
-            if c.is_empty():
-                value /= 2
-                break
+        # for c in self.freecells:
+        #     if c.is_empty():
+        #         value /= 2
+        #         break
 
         value += cards_left
 

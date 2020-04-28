@@ -31,7 +31,7 @@ def print_report():
 def main():
     if len(sys.argv) == 1:
         # For when main is called from the IDE
-        algorithm_str, input_path, data.output_path = ['best', 'input/test9.txt', 'output/out.txt']
+        algorithm_str, input_path, data.output_path = ['best', 'input/test4.txt', 'output/out.txt']
     elif len(sys.argv) == 3:
         algorithm_str, input_path = sys.argv[1:3]
     elif len(sys.argv) == 4:
