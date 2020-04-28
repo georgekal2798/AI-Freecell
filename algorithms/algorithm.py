@@ -15,16 +15,16 @@ class Algorithm:
         self.frontier = deque()
         self.visited = set()
         self.max_depth = 0
-        self.best_node = None
+        self.max_node = None
         self.states_checked = 1
 
     def run(self):
-        t0 = time.time()  # Starting timer
+        # Starting timer
+        t0 = time.time()
         print('Timeout is set to ' + str(data.timeout_threshold) + ' seconds')
 
         root_node = TreeNode(
-            None
-            , data.base_stacks
+            data.base_stacks
             , deque([Foundation(Suit(i + 1)) for i in range(data.F)])
             , deque([Freecell() for i in range(data.C)])
             , 0
@@ -39,13 +39,13 @@ class Algorithm:
             # Check timer before continuing
             timer = time.time() - t0
             if timer > data.timeout_threshold:
-                print('Timeout. Node with the greatest depth:')
-                solution = self.best_node
+                print('Timeout. Node with the maximum depth:')
+                solution = self.max_node
                 break
 
             current_node = self.frontier.popleft()
 
-            if self.is_solution(current_node):
+            if current_node.is_solution():
                 solution = current_node
                 break
 
@@ -56,23 +56,25 @@ class Algorithm:
         return timer, solution.depth, self.states_checked
 
     def find_children(self, node):
+        # possible_moves is a set of tuples. The first value of each tuple is the index of the source stack and the
+        # second value is the index of the target stack. Indices reference to the list returned by
+        # tree_node.all_stacks()
         possible_moves = node.find_possible_moves()
 
         for move in possible_moves:
             new_node = TreeNode(
-                node
-                , copy.deepcopy(node.base_stacks)
+                copy.deepcopy(node.base_stacks)
                 , copy.deepcopy(node.foundations)
                 , copy.deepcopy(node.freecells)
                 , node.depth + 1
                 , node.moves_logger
             )
 
-            # Debugging. Used as a kind of progress indicator
             if new_node.depth > self.max_depth:
-                self.best_node = new_node
+                self.max_node = new_node
                 self.max_depth = new_node.depth
-                print("Current maximum depth: %d" % self.max_depth)
+                # Debugging. Used as a kind of progress indicator
+                # print("Current maximum depth: %d" % self.max_depth)
 
             other_stack = new_node.all_stacks()[move[1]]
             current_stack = new_node.all_stacks()[move[0]]
@@ -83,18 +85,14 @@ class Algorithm:
             if new_node not in self.visited:
                 self.add_to_frontier(new_node)
                 self.visited.add(new_node)
+
+            # Deletes node from memory (according to stackoverflow; did not fully test it)
             new_node = None
 
         return None
 
     def add_to_frontier(self, node):
         pass
-
-    def is_solution(self, node):
-        for f in node.foundations:
-            if f.is_empty() or (f.top().number != data.N):
-                return False
-        return True
 
     def stop(self, solution):
         # data.print_stacks(solution)

@@ -1,14 +1,15 @@
 from collections import deque
 
-N = 13  # Number of cards per suit
+N = 7  # Number of cards per suit
 S = 8  # Number of base stacks
 C = 4  # Number of freecells
 F = 4  # Number of foundations
 
 output_path = 'output/out.txt'
 
-timeout_threshold = 3000
+timeout_threshold = 60
 
+# Base stacks from file are initially stored here
 base_stacks = deque()
 
 

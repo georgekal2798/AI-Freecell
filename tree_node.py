@@ -1,11 +1,10 @@
 import data
 from model.card import Card
-from model.freecell import Freecell
 
 
 class TreeNode:
-    def __init__(self, parent, base_stacks, foundations, freecells, depth, moves_logger='%NUM_OF_MOVES%'):
-        self.parent = parent
+    def __init__(self, base_stacks, foundations, freecells, depth, moves_logger='%NUM_OF_MOVES%'):
+        # parent is not used so it was removed for performance issues. Thus, only the frontier node is stored in memory
         self.base_stacks = base_stacks
         self.foundations = foundations
         self.freecells = freecells
@@ -14,11 +13,13 @@ class TreeNode:
         self.number_of_moves = 0
         self.moves_logger = moves_logger
 
+    # Override that allows comparisons between TreeNode objects
     def __eq__(self, other):
         return (self.base_stacks == other.base_stacks) and \
                (self.foundations == other.foundations) and \
                (self.freecells == other.freecells)
 
+    # Override that allows TreeNode objects to be part of a set
     def __hash__(self):
         return hash(tuple(self.base_stacks + self.foundations + self.freecells))
 
@@ -36,10 +37,8 @@ class TreeNode:
 
         freecells_range = range(data.S + data.F, data.S + data.F + data.C)
 
-        for i, current_stack in enumerate(self.base_stacks + self.freecells):
+        for i, current_stack in enumerate(self.all_stacks()):
             i_to_freecell = False
-            if type(current_stack) is Freecell:
-                i += data.F
             for j, other_stack in enumerate(self.all_stacks()):
                 if current_stack != other_stack and other_stack.can_move(current_stack):
                     if i_to_freecell and j in freecells_range:
@@ -56,6 +55,12 @@ class TreeNode:
     def all_stacks(self):
         return self.base_stacks + self.foundations + self.freecells
 
+    def is_solution(self):
+        for f in self.foundations:
+            if f.is_empty() or (f.top().number != data.N):
+                return False
+        return True
+
     def log_move(self, message):
         # self.number_of_moves += 1
         self.moves_logger += '\n' + message
@@ -68,6 +73,8 @@ class TreeNode:
         # the cards found on top of it. The returned value is the sum of this count for all foundations. This number is
         # multiplied by 2 if there are no free freecells or empty foundation stacks (reflecting the fact that freeing
         # the next card is harder in this case).
+        #
+        # Also, the number of cards remaining to be put to the foundations is added
 
         cards_left = 4 * data.N
         value = 0
@@ -88,12 +95,6 @@ class TreeNode:
                     value += i
                     # value += 2*i
                     break
-
-        # If freecells are not full, value is divided by 2
-        # for c in self.freecells:
-        #     if c.is_empty():
-        #         value /= 2
-        #         break
 
         value += cards_left
 

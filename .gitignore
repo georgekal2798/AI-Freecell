@@ -1,5 +1,4 @@
 /.idea/
-/output/
 /__pycache__/
 /model/__pycache__/
 /algorithms/__pycache__/

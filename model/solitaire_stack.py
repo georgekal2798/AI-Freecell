@@ -5,12 +5,14 @@ class SolitaireStack:
     def __init__(self):
         self.cards = deque()
 
+    # Overrides that allow comparisons between SolitaireStack objects
     def __eq__(self, other):
         return self.cards == other.cards
 
     def __ne__(self, other):
         return self.cards != other.cards
 
+    # Override that allows TreeNode objects to be part of a set
     def __hash__(self):
         return hash(tuple(self.cards))
 
