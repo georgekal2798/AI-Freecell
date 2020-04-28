@@ -66,8 +66,11 @@ class TreeNode:
         # multiplied by 2 if there are no free freecells or empty foundation stacks (reflecting the fact that freeing
         # the next card is harder in this case).
 
+        cards_left = 4 * data.N
         value = 0
         for f in self.foundations:
+            # Counts how many cards are left to be put to the foundations
+            cards_left -= len(f.cards)
             if not f.is_empty():
                 if f.top().number == data.N:
                     # This foundation is full. No cards left to be added
@@ -79,8 +82,16 @@ class TreeNode:
 
             for i, s in enumerate(self.base_stacks):
                 if card in s.cards:
-                    value += i
+                    value += 2*i
                     break
+
+        # If freecells are not full, value is divided by 2
+        for c in self.freecells:
+            if c.is_empty():
+                value /= 2
+                break
+
+        value += cards_left
 
         # include_moves is different than zero only when A* search algorithm is used. In that case the number of moves
         # already made is added to the final heuristic value
